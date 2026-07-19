@@ -4,7 +4,7 @@ public class Produto {
     private int id;
     private String nome;
     private double preco;
-    private static int quantidadeProdutoEstoque;
+    private int quantidadeProdutoEstoque;
 
     public int getId() {
         return id;
@@ -29,4 +29,13 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    public int getQuantidadeProdutoEstoque() {
+        return quantidadeProdutoEstoque;
+    }
+
+    public void setQuantidadeProdutoEstoque(int quantidadeProdutoEstoque) {
+        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
+    }
+
 }

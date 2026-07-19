@@ -29,4 +29,26 @@ public class BuscaProdutoMemoria implements BuscaProduto {
     public List<Produto> listarTodos() {
         return List.copyOf(produtos);
     }
+
+    @Override
+    public void reporProduto(Produto produto, int quantidade) {
+        if(quantidade > 0){
+            for(Produto p: produtos){
+                if(p.getId() == produto.getId()){
+                    p.setQuantidadeProdutoEstoque(quantidade);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void removerProduto(Produto produto, int quantidade) {
+        if(quantidade > 0) {
+            for (Produto p : produtos) {
+                if (p.getId() == produto.getId()) {
+                    p.setQuantidadeProdutoEstoque(quantidade);
+                }
+            }
+        }
+    }
 }
