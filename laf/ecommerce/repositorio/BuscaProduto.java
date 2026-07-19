@@ -3,7 +3,7 @@ package laf.ecommerce.repositorio;
 import laf.ecommerce.model.Produto;
 import java.util.List;
 
-public interface BuscaPedido {
+public interface BuscaProduto {
     Produto buscarPorId(int id);
     void salvarProduto(Produto produto);
     List<Produto> listarTodos();
