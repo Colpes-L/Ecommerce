@@ -1,12 +1,17 @@
 package laf.ecommerce.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pedido {
     private int id;
     private Cliente cliente;
-    private ItemPedido item;
+    private List<ItemPedido> itensPedidos = new ArrayList<>();
     private StatusPedido status;
 
-    public Pedido(){
+    public Pedido(int id, Cliente cliente){
+        this.id = id;
+        this.cliente = cliente;
         status = StatusPedido.ABERTO;
     }
 
@@ -26,12 +31,13 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public ItemPedido getItem() {
-        return item;
+    public List<ItemPedido> getItensPedidos() {
+        return List.copyOf(itensPedidos);
     }
 
-    public void setItem(ItemPedido item) {
-        this.item = item;
+    public void adicionaProduto(Produto produto,int quantidade) {
+        ItemPedido item = new ItemPedido(produto, quantidade);
+        this.itensPedidos.add(item);
     }
 
     public StatusPedido getStatus() {

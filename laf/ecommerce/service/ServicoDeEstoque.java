@@ -27,5 +27,15 @@ public class ServicoDeEstoque {
             buscaProdutoRepositorio.removerProduto(produto,quantidade);
         }
     }
+    
+    public boolean isProdutoEmEstoque(int id){
+        if( buscaProdutoRepositorio.buscarPorId(id) == null){
+            return false;
+        }
+        return true;
+    }
+    public int getProdutoQuantidadeEmEstoque(int id){
+        return buscaProdutoRepositorio.buscarPorId(id).getQuantidadeProdutoEstoque();
+    }
 
 }

@@ -3,10 +3,11 @@ package laf.ecommerce.persistence;
 import laf.ecommerce.model.Produto;
 import laf.ecommerce.repositorio.BuscaProduto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuscaProdutoMemoria implements BuscaProduto {
-    private List<Produto> produtos;
+    private List<Produto> produtos = new ArrayList<>();
 
     @Override
     public Produto buscarPorId(int id) {
@@ -46,7 +47,7 @@ public class BuscaProdutoMemoria implements BuscaProduto {
         if(quantidade > 0) {
             for (Produto p : produtos) {
                 if (p.getId() == produto.getId()) {
-                    p.setQuantidadeProdutoEstoque(quantidade);
+                    p.setQuantidadeProdutoEstoque(p.getQuantidadeProdutoEstoque() - quantidade);
                 }
             }
         }

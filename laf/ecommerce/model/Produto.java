@@ -6,6 +6,19 @@ public class Produto {
     private double preco;
     private int quantidadeProdutoEstoque;
 
+    public Produto(int id,String nome,double preco,int quantidadeProdutoEstoque){
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
+    }
+    public Produto(Produto outro){
+        this.id = outro.getId();
+        this.nome = outro.getNome();
+        this.preco = outro.getPreco();
+        this.quantidadeProdutoEstoque = outro.getQuantidadeProdutoEstoque();
+    }
+
     public int getId() {
         return id;
     }
