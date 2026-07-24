@@ -1,7 +1,10 @@
 package laf.ecommerce.service;
 
+import laf.ecommerce.model.ItemPedido;
 import laf.ecommerce.model.Produto;
 import laf.ecommerce.repositorio.BuscaProduto;
+
+import java.util.List;
 
 public class ServicoDeEstoque {
 
@@ -27,7 +30,11 @@ public class ServicoDeEstoque {
             buscaProdutoRepositorio.removerProduto(produto,quantidade);
         }
     }
-    
+    public void atualizaQuantidadeEmEstoque(List<ItemPedido> itens){
+        for(ItemPedido i : itens){
+            removerProdutoEstoque(i.getProduto(),i.getQuantidade());
+        }
+    }
     public boolean isProdutoEmEstoque(int id){
         if( buscaProdutoRepositorio.buscarPorId(id) == null){
             return false;

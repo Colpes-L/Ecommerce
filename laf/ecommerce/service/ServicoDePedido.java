@@ -73,9 +73,9 @@ public class ServicoDePedido {
     public void retiraProdutoDoPedidoDeEstoque(Pedido pedido){
         if(pedido.getStatus() == StatusPedido.CONFIRMADO){
             List<ItemPedido> itens = pedido.getItensPedidos();
-            for(ItemPedido i : itens){
-                servicoDeEstoque.removerProdutoEstoque(i.getProduto(),i.getQuantidade());
-            }
+            servicoDeEstoque.atualizaQuantidadeEmEstoque(itens);
+        }else{
+            System.out.println("Pedido não esta em situação confirmado para continuar a operação");
         }
     }
 
