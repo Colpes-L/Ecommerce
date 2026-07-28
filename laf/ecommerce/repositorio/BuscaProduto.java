@@ -11,5 +11,6 @@ public interface BuscaProduto {
 
     List<Produto> listarTodos();
     void reporProduto(Produto produto,int quantidade);
-    void removerProduto(Produto produto,int quantidade);
+    void removerProduto(Produto produto);
+    void retirarQuantidadeDoEstoque(Produto produto, int quantidade);
 }
