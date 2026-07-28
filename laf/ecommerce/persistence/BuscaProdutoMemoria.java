@@ -53,13 +53,16 @@ public class BuscaProdutoMemoria implements BuscaProduto {
     }
 
     @Override
-    public void removerProduto(Produto produto, int quantidade) {
-        if(quantidade > 0) {
-            for (Produto p : produtos) {
-                if (p.getId() == produto.getId()) {
-                    p.setQuantidadeProdutoEstoque(p.getQuantidadeProdutoEstoque() - quantidade);
-                }
-            }
+    public void removerProduto(Produto produto) {
+        if(produto != null) {
+            produtos.remove(produto);
+            quantidadeDeProdutos.remove(produto.getId());
+        }
+    }
+    @Override
+    public void retirarQuantidadeDoEstoque(Produto produto,int quantidade){
+        if (produto != null && quantidade > 0){
+            quantidadeDeProdutos.replace(produto.getId(), quantidadeDeProdutos.get(produto.getId()) - quantidade);
         }
     }
 }
