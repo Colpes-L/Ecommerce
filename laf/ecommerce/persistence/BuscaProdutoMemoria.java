@@ -1,4 +1,5 @@
 package laf.ecommerce.persistence;
+import java.util.HashMap;
 
 import laf.ecommerce.model.Produto;
 import laf.ecommerce.repositorio.BuscaProduto;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class BuscaProdutoMemoria implements BuscaProduto {
     private List<Produto> produtos = new ArrayList<>();
+    private HashMap<Integer,Integer> quantidadeDeProdutos = new HashMap<Integer, Integer>();
 
     @Override
     public Produto buscarPorId(int id) {
@@ -21,9 +23,21 @@ public class BuscaProdutoMemoria implements BuscaProduto {
 
     @Override
     public void salvarProduto(Produto produto) {
-        if(produto != null){
-            produtos.add(produto);
+        salvarProduto(produto,1);
+    }
+
+    @Override
+    public void salvarProduto(Produto produto, int quantidade) {
+        if(produto == null){
+            System.out.println("Produto Invalido");
+            return;
         }
+        if(quantidade < 0) {
+            System.out.println("Quantidade Invalida, deve ser maior que 0");
+            return;
+        }
+        produtos.add(produto);
+        quantidadeDeProdutos.put(produto.getId(), quantidade);
     }
 
     @Override
@@ -33,12 +47,8 @@ public class BuscaProdutoMemoria implements BuscaProduto {
 
     @Override
     public void reporProduto(Produto produto, int quantidade) {
-        if(quantidade > 0){
-            for(Produto p: produtos){
-                if(p.getId() == produto.getId()){
-                    p.setQuantidadeProdutoEstoque(quantidade);
-                }
-            }
+        if(quantidade > 0 && produto != null){
+            quantidadeDeProdutos.put(produto.getId(), quantidadeDeProdutos.get(produto.getId()) + quantidade);
         }
     }
 

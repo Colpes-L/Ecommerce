@@ -6,6 +6,9 @@ import java.util.List;
 public interface BuscaProduto {
     Produto buscarPorId(int id);
     void salvarProduto(Produto produto);
+
+    void salvarProduto(Produto produto, int quantidade);
+
     List<Produto> listarTodos();
     void reporProduto(Produto produto,int quantidade);
     void removerProduto(Produto produto,int quantidade);
