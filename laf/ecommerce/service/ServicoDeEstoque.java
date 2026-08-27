@@ -20,29 +20,34 @@ public class ServicoDeEstoque {
             System.out.println("Produto ja disponivel no Estoque, para adicionar reponha os produtos");
         }
     }
+
     public void reporProdutoEstoque(Produto produto,int quantidade){
         if(produto!= null && buscaProdutoRepositorio.buscarPorId(produto.getId()) != null){
             buscaProdutoRepositorio.reporProduto(produto,quantidade);
         }
     }
-    public void removerProdutoEstoque(Produto produto,int quantidade){
+
+    public void retirarQuantidadeDeProdutoEstoque(Produto produto,int quantidade){
         if(produto!= null && buscaProdutoRepositorio.buscarPorId(produto.getId()) != null){
-            buscaProdutoRepositorio.removerProduto(produto,quantidade);
+            buscaProdutoRepositorio.retirarQuantidadeDoEstoque(produto,quantidade);
         }
     }
+
     public void atualizaQuantidadeEmEstoque(List<ItemPedido> itens){
         for(ItemPedido i : itens){
-            removerProdutoEstoque(i.getProduto(),i.getQuantidade());
+            retirarQuantidadeDeProdutoEstoque(i.getProduto(),i.getQuantidade());
         }
     }
+
     public boolean isProdutoEmEstoque(int id){
         if( buscaProdutoRepositorio.buscarPorId(id) == null){
             return false;
         }
         return true;
     }
-    public int getProdutoQuantidadeEmEstoque(int id){
-        return buscaProdutoRepositorio.buscarPorId(id).getQuantidadeProdutoEstoque();
+
+    public int getProdutoQuantidadeEmEstoque(Produto produto){
+        return buscaProdutoRepositorio.getProdutoQuantidadeEstoque(produto);
     }
 
 }

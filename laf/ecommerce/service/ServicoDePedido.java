@@ -23,7 +23,7 @@ public class ServicoDePedido {
                 if(item.getQuantidade() == 0)
                     return null;
 
-                if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto.getId())){
+                if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
                     Pedido pedido = new Pedido(quantidadePedidos+1,cliente);
                     pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
                     pedidos.add(pedido);
@@ -47,7 +47,7 @@ public class ServicoDePedido {
             if(item.getQuantidade() == 0)
                 return;
 
-            if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto.getId())){
+            if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
                 pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
                 pedidos.add(pedido);
             }

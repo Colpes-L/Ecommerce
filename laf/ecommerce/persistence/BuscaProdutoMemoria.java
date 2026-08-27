@@ -65,4 +65,13 @@ public class BuscaProdutoMemoria implements BuscaProduto {
             quantidadeDeProdutos.replace(produto.getId(), quantidadeDeProdutos.get(produto.getId()) - quantidade);
         }
     }
+    @Override
+    public int  getProdutoQuantidadeEstoque(Produto produto){
+        if(produto != null){
+            int id = produto.getId();
+            int quantidade = quantidadeDeProdutos.get(id);
+            return quantidade;
+        }
+        return 0;
+    }
 }

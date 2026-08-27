@@ -12,14 +12,14 @@ public class Main {
         Cliente c3 = new Cliente(3, "joao","joao@gmail.com");
 
 
-        Produto p1 = new Produto(1,"banana",4.5,10);
-        Produto p2 = new Produto(2,"Picanha",40,10);
-        Produto p3 = new Produto(3,"Costela",38.8,10);
+        Produto p1 = new Produto(1,"banana",4.5);
+        Produto p2 = new Produto(2,"Picanha",40);
+        Produto p3 = new Produto(3,"Costela",38.8);
 
         BuscaProdutoMemoria bancomemoria = new BuscaProdutoMemoria();
-        bancomemoria.salvarProduto(p1);
-        bancomemoria.salvarProduto(p2);
-        bancomemoria.salvarProduto(p3);
+        bancomemoria.salvarProduto(p1,10);
+        bancomemoria.salvarProduto(p2,10);
+        bancomemoria.salvarProduto(p3,5);
 
         ServicoDeEstoque estoque = new ServicoDeEstoque(bancomemoria);
 
@@ -42,12 +42,12 @@ public class Main {
         servicoDePedido.adicionaItemAoPedido(item3,pedido2);
 
         for(ItemPedido p : pedido1.getItensPedidos()){
-            System.out.println(p.getProduto().getNome() + p.getProduto().getQuantidadeProdutoEstoque());
-            System.out.println(estoque.getProdutoQuantidadeEmEstoque(p.getProduto().getId()));
+            System.out.println(p.getProduto().getNome());
+            System.out.println(estoque.getProdutoQuantidadeEmEstoque(p.getProduto()));
         }
         for(ItemPedido p : pedido2.getItensPedidos()){
-            System.out.println(p.getProduto().getNome() + p.getProduto().getQuantidadeProdutoEstoque());
-            System.out.println(estoque.getProdutoQuantidadeEmEstoque(p.getProduto().getId()));
+            System.out.println(p.getProduto().getNome());
+            System.out.println(estoque.getProdutoQuantidadeEmEstoque(p.getProduto()));
         }
 
     }
