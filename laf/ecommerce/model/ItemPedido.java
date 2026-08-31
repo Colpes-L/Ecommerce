@@ -6,6 +6,14 @@ public class ItemPedido {
 
 
     public ItemPedido(Produto produto, int quantidade){
+
+        if(produto == null){
+            throw new IllegalArgumentException("O produto não pode ser nulo.");
+        }
+        if(quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade de produtos deve ser maior que 0.");
+        }
+
         this.produto = new Produto(produto);
         this.quantidade = quantidade;
     }
