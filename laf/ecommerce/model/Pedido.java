@@ -10,6 +10,13 @@ public class Pedido {
     private StatusPedido status;
 
     public Pedido(int id, Cliente cliente){
+        if(cliente == null){
+            throw new IllegalArgumentException("O cliente não pode ser nulo.");
+        }
+        if(id <= 0) {
+            throw new IllegalArgumentException("O id não deve ser negativo");
+        }
+
         this.id = id;
         this.cliente = cliente;
         status = StatusPedido.ABERTO;
