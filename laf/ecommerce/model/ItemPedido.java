@@ -22,9 +22,6 @@ public class ItemPedido {
     }
 
     public void setProduto(Produto produto) {
-        if(quantidade <= 0) {
-            throw new IllegalArgumentException("Quantidade de produtos deve ser maior que 0.");
-        }
         this.produto = new Produto(produto);
     }
 
@@ -33,6 +30,9 @@ public class ItemPedido {
     }
 
     public void setQuantidade(int quantidade) {
+        if(quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade de produtos deve ser maior que 0.");
+        }
         this.quantidade = quantidade;
     }
 }
