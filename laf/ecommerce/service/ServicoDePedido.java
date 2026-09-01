@@ -1,5 +1,6 @@
 package laf.ecommerce.service;
 import laf.ecommerce.model.*;
+import laf.ecommerce.exceptions.EstoqueInsuficienteException;
 import laf.ecommerce.repositorio.BuscaProduto;
 import laf.ecommerce.service.ServicoDeEstoque;
 
@@ -17,26 +18,21 @@ public class ServicoDePedido {
     }
 
     public Pedido criarPedido(ItemPedido item, Cliente cliente){
-            if(item != null){
-                Produto produto = new Produto(item.getProduto());
 
-                if(item.getQuantidade() == 0)
-                    return null;
-
-                if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
-                    Pedido pedido = new Pedido(quantidadePedidos+1,cliente);
-                    pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
-                    pedidos.add(pedido);
-
-                    return pedido;
-                }else {
-                    System.out.println("Quantidade Indisponivel no Estoque");
-                }
-
+            if(item == null){
+                throw new IllegalArgumentException("Item não deve ser nulo.");
             }
-            System.out.println("item inexistente");
-            return null;
+            Produto produto = new Produto(item.getProduto());
 
+            if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
+                Pedido pedido = new Pedido(quantidadePedidos+1,cliente);
+                pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
+                pedidos.add(pedido);
+
+                return pedido;
+            }else {
+                throw new EstoqueInsuficienteException("Quantidade Indisponivel no Estoque");
+            }
     }
     public void adicionaItemAoPedido(ItemPedido item,Pedido pedido){
 
