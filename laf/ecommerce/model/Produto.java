@@ -6,13 +6,13 @@ public class Produto {
     private double preco;
 
     public Produto(int id,String nome,double preco){
-        if(this.id <= 0){
+        if(id <= 0){
             throw new IllegalArgumentException("O id deve ser maior que 0.");
         }
-        if(this.nome == null || this.nome.isBlank()){
+        if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("O nome do produto nao pode ser vazio.");
         }
-        if(this.preco <= 0){
+        if(preco <= 0){
             throw new IllegalArgumentException("O preco deve ser maior que 0.");
         }
         this.id = id;
