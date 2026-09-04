@@ -34,31 +34,40 @@ public class ServicoDePedido {
                 throw new EstoqueInsuficienteException("Quantidade Indisponivel no Estoque");
             }
     }
+
     public void adicionaItemAoPedido(ItemPedido item,Pedido pedido){
 
-        if(item != null && pedido != null){
-
-            Produto produto = new Produto(item.getProduto());
-
-            if(item.getQuantidade() == 0)
-                return;
-
-            if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
-                pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
-                pedidos.add(pedido);
-            }
-
+        if(item == null){
+            throw new IllegalArgumentException("Em adicionaItemAoPedido: Item não deve ser nulo.");
         }
 
+        if(pedido == null){
+            throw new IllegalArgumentException("Em adicionaItemAoPedido: Pedido não deve ser nulo.");
+        }
+
+        Produto produto = new Produto(item.getProduto());
+
+        if(item.getQuantidade() <= servicoDeEstoque.getProdutoQuantidadeEmEstoque(produto)){
+            pedido.adicionaProduto(item.getProduto(), item.getQuantidade());
+            pedidos.add(pedido);
+        }else{
+            throw new EstoqueInsuficienteException("Em adicionaItemAoPedido: Estoque de itens Insuficiente");
+        }
     }
+
     public void removeItemDoPedido(ItemPedido item,int idDoPedido){
         Pedido pedido = buscarPedido(idDoPedido);
-        if(item != null && pedido != null){
-
-            Produto produto = new Produto(item.getProduto());
-            pedidos.remove(pedido);
-
+        if(item == null){
+            throw new IllegalArgumentException("Em removeItemDoPedido: Item não deve ser nulo.");
         }
+
+        if(pedido == null){
+            throw new IllegalArgumentException("Em removeItemDoPedido: Pedido não deve ser nulo.");
+        }
+
+        Produto produto = new Produto(item.getProduto());
+        pedidos.remove(pedido);
+
     }
     public void cancelaPedido(Pedido pedido){
     }
