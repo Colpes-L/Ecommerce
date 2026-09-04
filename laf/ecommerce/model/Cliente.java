@@ -6,13 +6,13 @@ public class Cliente {
     private String email;
 
     public Cliente(int id,String nome, String email){
-        if(this.id <= 0){
+        if(id <= 0){
             throw new IllegalArgumentException("O id deve ser maior que 0.");
         }
-        if(this.nome == null || this.nome.isBlank()){
+        if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("O nome do cliente nao pode ser vazio.");
         }
-        if(this.email == null || this.email.isBlank()){
+        if(email == null || email.isBlank()){
             throw new IllegalArgumentException("O email do cliente nao pode ser vazio.");
         }
         this.id = id;
